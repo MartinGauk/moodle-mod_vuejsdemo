@@ -1,0 +1,38 @@
+{
+  "name": "moodle-mod_vuejsdemo",
+  "description": "Vue.js project",
+  "version": "1.0.0",
+  "author": "info@example.com",
+  "license": "GPL",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env webpack --mode development --progress --hide-modules",
+    "watch": "cross-env webpack --mode development --watch --hide-modules",
+    "watch-hot": "cross-env webpack-dev-server --mode development --hot --inline --progress",
+    "build": "cross-env webpack --mode production --progress --hide-modules"
+  },
+  "dependencies": {
+    "vue": "^2.6.10",
+    "vue-router": "^3.0.5",
+    "vuex": "^3.1.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/preset-env": "^7.4.3",
+    "babel-loader": "^8.0.5",
+    "cross-env": "^5.2.0",
+    "css-loader": "^2.1.1",
+    "file-loader": "^3.0.1",
+    "vue-loader": "^15.7.0",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.3.1"
+  }
+}
