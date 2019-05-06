@@ -24,18 +24,18 @@
 require('../../config.php');
 require_once('lib.php');
 
-if (isset($_SERVER['PATH_INFO'])) {
-    // Support for Vue.js Router and its URL structure.
-    // /mod/vuejsdemo/view.php/[course module id]/.../...
-    $paths = explode('/', $_SERVER['PATH_INFO']);
-    if (count($paths) > 2) {
-        $coursemoduleid = intval($paths[1]);
-    }
-} else {
-    // Fallback (links on Moodle course pages).
-    $coursemoduleid = required_param('id', PARAM_INT);
+// if url has form view.php?id=xy then redirect to to view.php/xy
+$coursemoduleid = optional_param('id', 0, PARAM_INT);
+if ($coursemoduleid > 0) {
     $path = '/mod/vuejsdemo/view.php/' . $coursemoduleid . '/';
     redirect(new \moodle_url($path));
+}
+// Support for Vue.js Router and its URL structure.
+// /mod/vuejsdemo/view.php/[course module id]/.../...
+$paths = explode('/', $_SERVER['REQUEST_URI']);
+$baseindex = array_search('view.php', $paths);
+if (count($paths) > $baseindex + 1) {
+    $coursemoduleid = intval($paths[$baseindex + 1]);
 }
 
 list($course, $coursemodule) = get_course_and_cm_from_cmid($coursemoduleid, 'vuejsdemo');
